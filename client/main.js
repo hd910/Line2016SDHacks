@@ -53,33 +53,38 @@ Template.header.events({
 Template.home.rendered = function() {
   //console.log('rendered')
   //this is like rendered
-  //$('#lineRegisterForm').submit();
 
   $("#lineRegisterForm").submit(function (e) {
-    //console.log(e);
+    //e.preventDefault();
     var code = $('#lineRegister').val().toUpperCase();
     console.log(code)
     var line = Lines.find({code: code}).fetch()[0];
     if (line != undefined) {
       FlowRouter.go('line', { _id: code});
     } else {
-      alert('Invalid Event Code!')
+      console.log('Invalid Event Code!');
+      //alert('Invalid Event Code!');
     }
-    e.preventDefault();
+    //return false;
   });
 };
 
 Template.home.helpers({
-  //No need for jquery if I have handlebars?
-  line: function(){
-    return Lines.find({}).fetch()[0];
-  }
 });
 
 Template.home.events({
   'click #download-button'() {
-    $('#lineRegisterForm').submit();
-  },
+    console.log('hey')
+    var code = $('#lineRegister').val().toUpperCase();
+    console.log(code)
+    var line = Lines.find({code: code}).fetch()[0];
+    if (line != undefined) {
+      FlowRouter.go('line', { _id: code});
+    } else {
+      console.log('Invalid Event Code!');
+      //alert('Invalid Event Code!');
+    }
+  }
 });
 
 Template.dashboard.rendered = function(){
