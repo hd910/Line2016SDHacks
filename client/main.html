@@ -13,33 +13,6 @@
   {{> home}}
 </body>-->
 <template name="home">
-  <p>{{line.name}}</p>
-  <p>{{line.address}}</p>
-  <p>{{line.lineSize}}</p>
-
-  <form id="lineRegisterForm" class="" style="margin-bottom:10px">
-    <input id="lineRegister" style="width:80%; margin:0 auto;font-size: 16px;" type="text" class="form-control" placeholder="Example: 1423">
-  </form>
-</template>
-
-<template name="dashboard">
-  <h1>DashBoard!</h1>
-  <p>Line Number: </p><p id="qPosition">99</p>
-  <!--<p>{{line.lineSize}}</p>-->
-  <p id="demo"></p>
-
-  <nav class="mainColorDark" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Queue</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
   <div class="section no-pad-bot mainColorDark" id="index-banner">
     <div class="container">
       <br>
@@ -50,10 +23,14 @@
             <div class="card-stacked">
               <div class="card-content">
                 <p class="mainColor-text" style="font-size:20px;margin-left:10px">Enter the code</p>
-
                 <div class="input-field col s12">
-                  <input value="" id="first_name2" type="text" class="validate" style="font-size:25px">
+                  <form id="lineRegisterForm">
+                    <input value="" id="lineRegister" type="text" class="validate" style="font-size:25px" placeholder="Example: E2V9">
+                  </form>
                 </div>
+                <!--<form id="lineRegisterForm" class="" style="margin-bottom:10px">
+                  <input id="lineRegister" style="width:80%; margin:0 auto;font-size: 16px;" type="text" class="form-control" placeholder="Example: 1423">
+                </form>-->
               </div>
             </div>
           </div>
@@ -146,6 +123,16 @@
       </div>
     </div>
   </footer>
+  <p>{{line.name}}</p>
+  <p>{{line.address}}</p>
+  <p>{{line.lineSize}}</p>
+</template>
+
+<template name="dashboard">
+  <h1>DashBoard!</h1>
+  <p>Line Number: </p><p id="qPosition">99</p>
+  <!--<p>{{line.lineSize}}</p>-->
+  <p id="demo"></p>
 </template>
 
 <template name="layout1">
@@ -154,7 +141,18 @@
 </template>
 
 <template name="header">
-  <h1>Virtual Que</h1>
+  <nav class="mainColorDark" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Queue</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 </template>
 
 <template name="info">
