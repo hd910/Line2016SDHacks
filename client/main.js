@@ -33,16 +33,18 @@ Template.dashboard.helpers({
 });
 
 Template.dashboard.rendered = function(){
-  $('#qPosition').text(lineNum);
+  console.log('rend')
   lineInterval = setInterval(intervalFunction, 3000);
 
   var code = FlowRouter.getParam("_id");
   function intervalFunction() {
       Meteor.call('lineMinus', code)
       lineNum = Lines.find({code: code}).fetch()[0].lineSize;
-      $('#qPosition').text(lineNum);
+      console.log(lineNum);
+      //$('#qPosition').text(lineNum);
   }
 };
+
 Template.header.events({
   'click #logo-container'() {
     window.clearInterval(lineInterval);
@@ -74,7 +76,6 @@ Template.home.helpers({
 
 Template.home.events({
   'click #download-button'() {
-    console.log('hey')
     var code = $('#lineRegister').val().toUpperCase();
     console.log(code)
     var line = Lines.find({code: code}).fetch()[0];

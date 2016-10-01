@@ -129,12 +129,6 @@
 </template>
 
 <template name="dashboard">
-  <h1>DashBoard!</h1>
-  <p>Line Number: </p><p id="qPosition">99</p>
-  <!--<p>{{line.lineSize}}</p>-->
-  <p id="demo"></p>
-
-
   <div class="section no-pad-bot mainColorDark" id="index-banner" style="position:relative;">
     <div class="container">
       <br>
@@ -142,9 +136,9 @@
       style="display: block; margin-left: auto;margin-right: auto;"
       width="300px">
 
-      <span class="circleText timeText"> 1hr 20m</span>
+      <span id="timeLeft" class="circleText timeText"> 1hr 20m</span>
 
-      <span class="circleText etaText"> 63</span>
+      <span class="circleText etaText"> {{line.lineSize}}</span>
 
       <h3 class="header center white-text">Panda Express</h3>
       <h5 class ="header center white-text">123 Panda Street, La Jolla</h5>
