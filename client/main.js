@@ -55,7 +55,8 @@ Template.home.rendered = function() {
     //console.log(e);
     console.log($('#lineRegister').val())
     var code = $('#lineRegister').val();
-    if (code == '123') {
+    var lineObj = Lines.find({code: code}).fetch()[0];
+    if (lineObj != undefined) {
       FlowRouter.go('line', { _id: code});
     }
     e.preventDefault();

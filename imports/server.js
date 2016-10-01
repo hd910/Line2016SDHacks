@@ -6,13 +6,21 @@ import { Mongo } from 'meteor/mongo';
 export const Lines = new Mongo.Collection('lines');
 
 Meteor.methods({
-  newLine(cName, cAddress){
+  newLine(cName, cAddress, code){
     //relevant parameters
     Lines.insert({
       name: cName,
       address: cAddress,
       lineSize: 0,
+      code: code
     });
+  },
+  updateCode(name, code){
+    Lines.update(
+      {name: name},
+      //make it not case sensitive
+      {"$set" : {code : 'E29V'}}
+    );
   },
   //store local instance
   lineMinus(cName){
@@ -27,9 +35,9 @@ Meteor.methods({
 
 //Needs db to store info about files
 Meteor.startup(() => {
+  //Meteor.call('updateCode', 'Panda Express', 'E29V')
   //Meteor.call('newLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101')
   // code to run on server at startup
-
 });
 
 if (Meteor.isServer) {
