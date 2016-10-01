@@ -20,26 +20,6 @@
   <form id="lineRegisterForm" class="" style="margin-bottom:10px">
     <input id="lineRegister" style="width:80%; margin:0 auto;font-size: 16px;" type="text" class="form-control" placeholder="Example: 1423">
   </form>
-</template>
-
-<template name="dashboard">
-  <h1>DashBoard!</h1>
-  <p>Line Number: </p><p id="qPosition">99</p>
-  <!--<p>{{line.lineSize}}</p>-->
-  <p id="demo"></p>
-
-  <nav class="mainColorDark" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Queue</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
   <div class="section no-pad-bot mainColorDark" id="index-banner">
     <div class="container">
       <br>
@@ -65,7 +45,9 @@
         <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light mainColor">Start Queuing</a>
       </div>
       <br><br>
-
+      <img  src="img/downArrow.png" 
+        style="display: block; margin-left: auto;margin-right: auto;"
+        width="80px">
     </div>
   </div>
 
@@ -146,6 +128,100 @@
       </div>
     </div>
   </footer>
+
+</template>
+
+<template name="dashboard">
+  <h1>DashBoard!</h1>
+  <p>Line Number: </p><p id="qPosition">99</p>
+  <!--<p>{{line.lineSize}}</p>-->
+  <p id="demo"></p>
+
+  
+  <div class="section no-pad-bot mainColorDark" id="index-banner" style="position:relative;">
+    <div class="container">
+      <br>
+      <img src="img/circle.png" alt=""
+      style="display: block; margin-left: auto;margin-right: auto;"
+      width="300px">
+
+      <span class="circleText timeText"> 1hr 20m</span>
+
+      <span class="circleText etaText"> 63</span>
+
+      <h3 class="header center white-text">Panda Express</h3>
+      <h5 class ="header center white-text">123 Panda Street, La Jolla</h5>
+      <br>
+      <img  src="img/downArrow.png" 
+        style="display: block; margin-left: auto;margin-right: auto;"
+        width="80px">
+    </div>
+  </div>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br>
+      <div class="carousel carousel-slider center"  data-indicators="true">
+        <div class="carousel-fixed-item center">
+          <a class="btn waves-effect mainColor white-text darken-text-2">More Info</a>
+        </div>
+        <div class="carousel-item white black-text"  style="padding:20px;" href="#one!">
+          <h3 style="float:left">Promotion</h3>
+          <br>
+          <span class="black-text left">This is your first panel</span>
+          <img src="http://lorempixel.com/800/400/food/1">
+        </div>
+        <div class="carousel-item white black-text"  style="padding:20px;" href="#two!">
+          <h3 style="float:left">Promotion</h3>
+          <br>
+          <span class="black-text left">This is your second panel</span>
+          <img src="http://lorempixel.com/800/400/food/2">
+        </div>
+        <div class="carousel-item white black-text"   style="padding:20px;" href="#three!">
+          <h3 style="float:left">Promotion</h3>
+          <br>
+          <span class="black-text left">This is your third panel</span>
+          <img src="http://lorempixel.com/800/400/food/3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer mainColor">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Queue</h5>
+          <p class="grey-text text-lighten-4">We are a team of 4 University students working on this as our SD Hacks project.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright 2016
+      </div>
+    </div>
+  </footer>
 </template>
 
 <template name="layout1">
@@ -154,7 +230,24 @@
 </template>
 
 <template name="header">
-  <h1>Virtual Que</h1>
+  <nav class="mainColorDark" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">
+        <img src="img/logo.png" alt="" height="35px" style="position:relative;top:5px" >
+        Queue
+        </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">What Is Queue</a></li>
+        <li><a href="#">Team</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">What Is Queue</a></li>
+        <li><a href="#">Team</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 </template>
 
 <template name="info">

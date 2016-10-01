@@ -75,3 +75,12 @@ Template.home.events({
     instance.counter.set(instance.counter.get() + 1);
   },
 });
+
+Template.dashboard.rendered = function(){
+  $('.button-collapse').sideNav();
+  $('.carousel.carousel-slider').carousel({full_width: true});
+};
+
+Template.home.rendered = function(){
+  $('.button-collapse').sideNav();
+};

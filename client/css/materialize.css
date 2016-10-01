@@ -7690,7 +7690,7 @@ input[type=range]:focus::-ms-fill-upper {
 .carousel.carousel-slider .carousel-item h2 {
   font-size: 24px;
   font-weight: 500;
-  line-height: 32px;
+  line-height: 0px;
 }
 
 .carousel.carousel-slider .carousel-item p {
@@ -7726,13 +7726,13 @@ input[type=range]:focus::-ms-fill-upper {
   height: 8px;
   width: 8px;
   margin: 24px 4px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #283957;
   transition: background-color .3s;
   border-radius: 50%;
 }
 
 .carousel .indicators .indicator-item.active {
-  background-color: #fff;
+  background-color: #2980b9;
 }
 
 /* ==========================================================================

@@ -1,1 +1,25 @@
 /* CSS declarations go here */
+body{
+    background-color:#dddddd;
+}
+
+.circleText{
+    font-size: 50px;
+    color:black;
+}
+
+.timeText{
+    left: 0;
+    position:absolute;
+    text-align:center;
+    top: 110px;
+    width: 100%
+}
+
+.etaText{
+    left: -40px;
+    position:absolute;
+    text-align:center;
+    top: 210px;
+    width: 100%
+}
