@@ -12,6 +12,7 @@ Meteor.methods({
       name: cName,
       address: cAddress,
       lineSize: 0,
+      hourMin: 0,
       code: code
     });
   },
@@ -29,6 +30,9 @@ Meteor.methods({
   },
   codeAdjust(code, newCode){
     Lines.update({"code": code}, {"$set" : {code : newCode}});
+  },
+  hourMin(code, hourMin){
+    Lines.update({"code": code}, {"$set" : {hourMin : hourMin}});
   }
 });
 

@@ -128,6 +128,9 @@
 
 </template>
 
+<template name="server">
+</template>
+
 <template name="dashboard">
   <div class="section no-pad-bot mainColorDark" id="index-banner" style="position:relative;">
     <div class="container">
@@ -136,7 +139,7 @@
       style="display: block; margin-left: auto;margin-right: auto;"
       width="300px">
 
-      <span id="timeLeft" class="circleText timeText"> 1hr 20m</span>
+      <span id="timeLeft" class="circleText timeText"> {{line.hourMin}}</span>
 
       <span class="circleText etaText"> {{line.lineSize}}</span>
 
