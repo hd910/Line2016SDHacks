@@ -45,6 +45,12 @@ Template.dashboard.rendered = function(){
   }
   //window.clearInterval(timerVariable)
 };
+Template.header.events({
+  'click #logo-container'() {
+    console.log('hit')
+    FlowRouter.go('home');
+  }
+});
 
 Template.home.rendered = function() {
   //console.log('rendered')
@@ -55,7 +61,9 @@ Template.home.rendered = function() {
     //console.log(e);
     console.log($('#lineRegister').val())
     var code = $('#lineRegister').val();
-    if (code == '123') {
+    var line = Lines.find({code: code}).fetch()[0];
+    console.log(line)
+    if (line != undefined) {
       FlowRouter.go('line', { _id: code});
     }
     e.preventDefault();
