@@ -24,14 +24,40 @@ Meteor.subscribe('lines', function() {
   //console.log(Lines.find({}).fetch()[0]);
 });
 
+Template.dashboard.helpers({
+  //No need for jquery if I have handlebars?
+  line: function(){
+    return Lines.find({}).fetch()[0];
+  }
+});
+
+Template.dashboard.rendered = function(){
+  var lineNum = 99;
+  $('#qPosition').text(lineNum);
+  var myVar = setInterval(myTimer, 3000);
+
+  function myTimer() {
+      var d = new Date();
+      lineNum --;
+      $('#qPosition').text(lineNum);
+      //qPosition
+      document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+  }
+  //window.clearInterval(timerVariable)
+};
+
 Template.home.rendered = function() {
-  console.log('rendered')
+  //console.log('rendered')
   //this is like rendered
   //$('#lineRegisterForm').submit();
 
   $("#lineRegisterForm").submit(function (e) {
-    console.log(e);
-    console.log($('#lineRegister').val)
+    //console.log(e);
+    console.log($('#lineRegister').val())
+    var code = $('#lineRegister').val();
+    if (code == '123') {
+      FlowRouter.go('line', { _id: code});
+    }
     e.preventDefault();
   });
 };
