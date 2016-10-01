@@ -30,10 +30,14 @@
             <div class="card-stacked">
               <div class="card-content">
                 <p class="mainColor-text" style="font-size:20px;margin-left:10px">Enter the code</p>
-
                 <div class="input-field col s12">
-                  <input value="" id="first_name2" type="text" class="validate" style="font-size:25px">
+                  <form id="lineRegisterForm">
+                    <input value="" id="lineRegister" type="text" class="validate" style="font-size:25px" placeholder="Example: E29V">
+                  </form>
                 </div>
+                <!--<form id="lineRegisterForm" class="" style="margin-bottom:10px">
+                  <input id="lineRegister" style="width:80%; margin:0 auto;font-size: 16px;" type="text" class="form-control" placeholder="Example: 1423">
+                </form>-->
               </div>
             </div>
           </div>
@@ -42,7 +46,7 @@
       </div>
 
       <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light mainColor">Start Queuing</a>
+        <a href="#" id="download-button" class="btn-large waves-effect waves-light mainColor">Start Queuing</a>
       </div>
       <br><br>
       <img  src="img/downArrow.png" 
@@ -222,6 +226,7 @@
       </div>
     </div>
   </footer>
+
 </template>
 
 <template name="layout1">

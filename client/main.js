@@ -7,7 +7,6 @@ import './main.html';
 FlowRouter.route('/', {
   name: 'home',
   action(params, queryParams) {
-    console.log("Looking at a list?");
     BlazeLayout.render('layout1', { top: "header", main: "home" });
   }
 });
@@ -15,13 +14,15 @@ FlowRouter.route('/', {
 FlowRouter.route('/:_id', {
   name: 'line',
   action(params, queryParams) {
-    console.log(params)
     BlazeLayout.render('layout1', { top: "header", main: "dashboard" });
   }
 });
 
+var lineInterval;
+var lineNum;
+
 Meteor.subscribe('lines', function() {
-  //console.log(Lines.find({}).fetch()[0]);
+  lineNum = Lines.find({}).fetch()[0].lineSize;
 });
 
 Template.dashboard.helpers({
@@ -32,19 +33,22 @@ Template.dashboard.helpers({
 });
 
 Template.dashboard.rendered = function(){
-  var lineNum = 99;
   $('#qPosition').text(lineNum);
-  var myVar = setInterval(myTimer, 3000);
+  lineInterval = setInterval(intervalFunction, 3000);
 
-  function myTimer() {
-      var d = new Date();
-      lineNum --;
+  var code = FlowRouter.getParam("_id");
+  function intervalFunction() {
+      Meteor.call('lineMinus', code)
+      lineNum = Lines.find({code: code}).fetch()[0].lineSize;
       $('#qPosition').text(lineNum);
-      //qPosition
-      document.getElementById("demo").innerHTML = d.toLocaleTimeString();
   }
-  //window.clearInterval(timerVariable)
 };
+Template.header.events({
+  'click #logo-container'() {
+    window.clearInterval(lineInterval);
+    FlowRouter.go('home');
+  }
+});
 
 Template.home.rendered = function() {
   //console.log('rendered')
@@ -53,10 +57,13 @@ Template.home.rendered = function() {
 
   $("#lineRegisterForm").submit(function (e) {
     //console.log(e);
-    console.log($('#lineRegister').val())
-    var code = $('#lineRegister').val();
-    if (code == '123') {
+    var code = $('#lineRegister').val().toUpperCase();
+    console.log(code)
+    var line = Lines.find({code: code}).fetch()[0];
+    if (line != undefined) {
       FlowRouter.go('line', { _id: code});
+    } else {
+      alert('Invalid Event Code!')
     }
     e.preventDefault();
   });
@@ -70,9 +77,8 @@ Template.home.helpers({
 });
 
 Template.home.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
+  'click #download-button'() {
+    $('#lineRegisterForm').submit();
   },
 });
 
