@@ -42,7 +42,7 @@ Template.dashboard.helpers({
 
 Template.server.rendered = function(){
   console.log('Server rendered')
-  Meteor.call('lineAdjust', 'E29V', 94);
+  Meteor.call('lineAdjust', 'E29V', 23);
 
   lineInterval = setInterval(intervalFunction, 3000);
 
@@ -51,7 +51,7 @@ Template.server.rendered = function(){
   function intervalFunction() {
     Meteor.call('lineMinus', code)
     lineNum = Lines.find({code: code}).fetch()[0].lineSize;
-    var timeLeft = lineNum*10;
+    var timeLeft = lineNum*5;
     var cHour = Math.round(timeLeft/60)
     var cMinute = Math.round(timeLeft%60)
     var hourMin = cHour + 'hr ' + cMinute + 'm';
