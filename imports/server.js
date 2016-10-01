@@ -6,28 +6,38 @@ import { Mongo } from 'meteor/mongo';
 export const Lines = new Mongo.Collection('lines');
 
 Meteor.methods({
-  newLine(cName, cAddress){
+  newLine(cName, cAddress, code){
     //relevant parameters
     Lines.insert({
       name: cName,
       address: cAddress,
       lineSize: 0,
+      code: code
     });
   },
   //store local instance
-  lineMinus(cName){
+  lineMinus(code){
     //easier to just do seperate methods for different operations?
     //switch chase?
-    Lines.update({"name": cName}, {$inc: {views: -1}});
+    Lines.update({"code": code}, {$inc: {lineSize: -1}});
   },
-  lineAdd(cName){
-    Lines.update({"name": cName}, {$inc: {views: -1}});
+  lineAdd(code){
+    Lines.update({"code": code}, {$inc: {lineSize: -1}});
+  },
+  lineAdjust(code, value){
+    Lines.update({"code": code}, {"$set" : {lineSize : value}});
+  },
+  codeAdjust(code, newCode){
+    Lines.update({"code": code}, {"$set" : {code : newCode}});
   }
 });
 
 //Needs db to store info about files
 Meteor.startup(() => {
+  Meteor.call('codeAdjust', '1499', '4B5V')
+  //Meteor.call('lineAdjust', '4B5V', 149)
   //Meteor.call('newLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101')
+  //Meteor.call('newLine', 'Which Wich', '926 Orange Ave, Coronado, CA 92118', '4B5V');
   // code to run on server at startup
 
 });
