@@ -2,9 +2,9 @@
   <title>sdhacks2016</title>
 </head>
 
-<body>
+<!--<body>
   {{> home}}
-</body>
+</body>-->
 
 <template name="home">
   <p>{{line.name}}</p>
@@ -14,6 +14,19 @@
   <form id="lineRegisterForm" class="" style="margin-bottom:10px">
     <input id="lineRegister" style="width:80%; margin:0 auto;font-size: 16px;" type="text" class="form-control" placeholder="Example: 1423">
   </form>
+</template>
+
+<template name="dashboard">
+  <h1>DashBoard!</h1>
+</template>
+
+<template name="layout1">
+  {{> Template.dynamic template=top}}
+  {{> Template.dynamic template=main}}
+</template>
+
+<template name="header">
+  <h1>Virtual Que</h1>
 </template>
 
 <template name="info">
