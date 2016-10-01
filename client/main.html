@@ -7,10 +7,13 @@
 </body>
 
 <template name="home">
-  <button>Click Me</button>
   <p>{{line.name}}</p>
   <p>{{line.address}}</p>
   <p>{{line.lineSize}}</p>
+
+  <form id="lineRegisterForm" class="" style="margin-bottom:10px">
+    <input id="lineRegister" style="width:80%; margin:0 auto;font-size: 16px;" type="text" class="form-control" placeholder="Example: 1423">
+  </form>
 </template>
 
 <template name="info">
