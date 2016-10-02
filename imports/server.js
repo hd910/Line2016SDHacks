@@ -40,7 +40,7 @@ Meteor.methods({
 Meteor.startup(() => {
   //Meteor.call('codeAdjust', '1499', '4B5V')
   //Meteor.call('lineAdjust', 'E29V', 149);
-  //Meteor.call('newLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101')
+  //Meteor.call('newLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101', 'E29V');
   //Meteor.call('newLine', 'Which Wich', '926 Orange Ave, Coronado, CA 92118', '4B5V');
   // code to run on server at startup
 });
