@@ -131,9 +131,6 @@
 
 </template>
 
-<template name="server">
-</template>
-
 <template name="dashboard">
   <div class="section no-pad-bot mainColorDark" id="index-banner" style="position:relative;">
     <div class="container">
@@ -221,6 +218,27 @@
 </template>
 
 <template name="header">
+  <nav class="mainColorDark" role="navigation" style="border-bottom: 3px solid #2980b9;">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">
+        <img src="img/logo.png" alt="" height="35px" style="position:relative;top:5px" >
+        Queue
+        </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">What Is Queue</a></li>
+        <li><a href="#">Team</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">What Is Queue</a></li>
+        <li><a href="#">Team</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</template>
+
+<template name="headerMain">
   <nav class="mainColorDark" role="navigation" style="border-bottom: 3px solid #2980b9;">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">

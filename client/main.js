@@ -18,27 +18,28 @@ FlowRouter.route('/', {
   }
 });*/
 
-FlowRouter.route('/server/:_id', {
-  name: 'server',
+FlowRouter.route('/:_id', {
+  name: 'line',
   action(params, queryParams) {
-    BlazeLayout.render('layout1', { top: "header", main: "server" });
+    BlazeLayout.render('layout1', { top: "headerMain", main: "dashboard" });
   }
 });
 
-FlowRouter.route('/:_id', {
-  name: 'line',
+FlowRouter.route('/view/:_id', {
+  name: 'lineView',
   action(params, queryParams) {
     BlazeLayout.render('layout1', { top: "header", main: "dashboard" });
   }
 });
 
-var lineInterval;
-var lineNum;
-var dashCode;
-
 Meteor.subscribe('lines', function() {
-  lineNum = Lines.find({}).fetch()[0].lineSize;
+  var code = FlowRouter.getParam("_id");
+  //console.log(Lines.find({code: code}).fetch()[0]);
 });
+
+var lineInterval;
+var dashCode;
+var bar;
 
 Template.dashboard.helpers({
   line: function(){
@@ -130,7 +131,7 @@ Template.charts.rendered = function(){
   $('.canvasjs-chart-credit').hide()
 }
 
-Template.server.rendered = function(){
+Template.headerMain.rendered = function(){
   console.log('Server rendered')
   Meteor.call('lineAdjust', 'E29V', 15);
 
@@ -138,17 +139,31 @@ Template.server.rendered = function(){
 
   var code = FlowRouter.getParam("_id");
   //Tick Tock
+  var per = 0;
+  var total = Lines.find({code: code}).fetch()[0].lineSize;
   function intervalFunction() {
     Meteor.call('lineMinus', code)
-    lineNum = Lines.find({code: code}).fetch()[0].lineSize;
+    var lineNum = Lines.find({code: code}).fetch()[0].lineSize;
     var timeLeft = lineNum*5;
     var cHour = Math.round(timeLeft/60)
     var cMinute = Math.round(timeLeft%60)
     var hourMin = cHour + 'hr ' + cMinute + 'm';
     Meteor.call('hourMin', code, hourMin);
+    if (lineNum == 0) {
+      per = 0;
+    } else {
+      per = 1-(lineNum/total);
+    }
+
+    if (per < 1.0) {
+      bar.animate(per)
+    } else {
+      //change circle to something bright
+    }
+
     if (lineNum < 1) {
       window.clearInterval(lineInterval);
-      //fire trillo event!
+      //fire trillo !
     }
   }
 };
@@ -158,7 +173,7 @@ Template.dashboard.rendered = function(){
   $('.carousel.carousel-slider').carousel({full_width: true});
   var ProgressBar = require('progressbar.js')
   var line = new ProgressBar.Line('#circleProgressBar');
-  var bar = new ProgressBar.Circle(circleProgressBar, {
+  bar = new ProgressBar.Circle(circleProgressBar, {
     strokeWidth: 6,
     easing: 'easeInOut',
     duration: 1400,
@@ -167,12 +182,11 @@ Template.dashboard.rendered = function(){
     trailWidth: 0,
     svgStyle: null
   });
-
-  bar.animate(1.0);  // Number from 0.0 to 1.0
 };
 
 Template.header.events({
   'click #logo-container'() {
+    //Meteor.call('newCLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101', 'E29V');
     window.clearInterval(lineInterval);
     FlowRouter.go('home');
   }
