@@ -87,29 +87,27 @@ Template.charts.rendered = function(){
   window.onload = function () {
     CanvasJS.addColorSet("blueShades",
     [//colorSet Array
-    "#008080",
-    "#008B8B"
+    "#2980b9"
     ]);
     var chart = new CanvasJS.Chart("chartContainer", {
       colorSet: "blueShades",
                               animationEnabled: true,
                   animationDuration: 2000,
                               title: {
-        text: "Busy Hours"
+      },
+      axisY:{
+         valueFormatString: " ",
+         tickLength: 0,
+         gridColor: "white"
+      },
+      axisX:{
+        valueFormatString: "Time (24hr)",
+          tickLength: 0
       },
       data: [{
         type: "column",
         dataPoints: [
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-        { x: 2, y: 0 },
-        { x: 3, y: 0 },
-        { x: 4, y: 0 },
-        { x: 5, y: 0 },
-        { x: 6, y: 0 },
-        { x: 7, y: 0 },
-        { x: 8, y: 0 },
-        { x: 9, y: 0 },
+        { x: 9, y: 3 },
         { x: 10, y: 3 },
         { x: 11, y: 7 },
         { x: 12, y: 10 },
