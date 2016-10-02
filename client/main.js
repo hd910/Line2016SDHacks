@@ -83,50 +83,45 @@ Template.maps.helpers({
     }
   }
 });
+
 Template.charts.rendered = function(){
-  window.onload = function () {
     CanvasJS.addColorSet("blueShades",
     [//colorSet Array
     "#2980b9"
     ]);
     var chart = new CanvasJS.Chart("chartContainer", {
       colorSet: "blueShades",
-                              animationEnabled: true,
-                  animationDuration: 2000,
-                              title: {
-      },
+      animationEnabled: true,
+      animationDuration: 2000,
       axisY:{
          valueFormatString: " ",
-         tickLength: 0,
          gridColor: "white"
       },
       axisX:{
-        valueFormatString: "Time (24hr)",
-          tickLength: 0
+        valueFormatString: "",
       },
       data: [{
         type: "column",
         dataPoints: [
-        { x: 9, y: 3 },
-        { x: 10, y: 3 },
-        { x: 11, y: 7 },
-        { x: 12, y: 10 },
-        { x: 13, y: 12 },
-        { x: 14, y: 10 },
-        { x: 15, y: 8 },
-        { x: 16, y: 6 },
-        { x: 17, y: 9 },
-        { x: 18, y: 13 },
-        { x: 19, y: 15 },
-        { x: 20, y: 12 },
-        { x: 21, y: 8 },
-        { x: 22, y: 3 },
-        { x: 23, y: 0 },
+        { label: "9am", y: 3 },
+        { label: "10am", y: 3 },
+        { label: "11am", y: 7 },
+        { label: "12pm", y: 10 },
+        { label: "1pm", y: 12 },
+        { label: "2pm", y: 10 },
+        { label: "3pm", y: 8 },
+        { label: "4pm", y: 6 },
+        { label: "5pm", y: 9 },
+        { label: "6pm", y: 13 },
+        { label: "7pm", y: 22 },
+        { label: "8pm", y: 12 },
+        { label: "9pm", y: 8 },
+        { label: "10pm", y: 3 },
+        { label: "11pm", y: 2 }
         ]
       }]
     });
     chart.render();
-  }
   $('.canvasjs-chart-credit').hide()
 }
 
