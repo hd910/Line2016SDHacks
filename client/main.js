@@ -151,11 +151,15 @@ Template.dashM.rendered = function(){
     } else {
       per = 1-(lineNum/total);
     }
-
-    if (per < 1.0) {
+    if (per < 1.0 && per > 0) {
       bar.animate(per)
     } else {
       //change circle to something bright
+      bar.color = "#2ed06e";
+      var opts = {
+        from: { color: '#2980b9 '},
+        to: { color: '#2ed06e'}};
+      bar.animate(1, opts);
     }
 
     if (lineNum < 1) {
