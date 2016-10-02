@@ -11,13 +11,6 @@ FlowRouter.route('/', {
   }
 });
 
-/*FlowRouter.route('/map', {
-  name: 'maps',
-  action(params, queryParams) {
-    BlazeLayout.render('layout1', { top: "header", main: "maps" });
-  }
-});*/
-
 FlowRouter.route('/:_id', {
   name: 'line',
   action(params, queryParams) {
@@ -128,21 +121,30 @@ Template.charts.rendered = function(){
 }
 
 Template.dashM.rendered = function(){
-  Meteor.call('lineAdjust', 'E29V', 15);
+  Meteor.call('lineAdjust', 'E29V', 27);
+  Meteor.call('lineAdjust', 'MK5V', 15);
 
-  lineInterval = setInterval(intervalFunction, 3000);
+  lineInterval = setInterval(intervalFunction, 2000);
 
   var code = FlowRouter.getParam("_id");
   //Tick Tock
   var per = 0;
-  var total = 16;
+
+  if (code == 'E29V') {
+    var total = 28;
+  } else {
+    var total = 16;
+  }
+
   //Lines.find({code: code}).fetch()[0].lineSize;
   function intervalFunction() {
     Meteor.call('lineMinus', code)
     var lineNum = Lines.find({code: code}).fetch()[0].lineSize;
     var timeLeft = lineNum*5;
-    var cHour = Math.round(timeLeft/60)
+
+    var cHour = Math.floor(timeLeft/60)
     var cMinute = Math.round(timeLeft%60)
+
     var hourMin = cHour + 'hr ' + cMinute + 'm';
     Meteor.call('hourMin', code, hourMin);
     if (lineNum == 0) {
@@ -168,6 +170,8 @@ Template.dashM.rendered = function(){
       });
       var hourMin = "Ready";
       Meteor.call('hourMin', code, hourMin);
+      $('#lineSize').hide();
+      $('#cDone').show();
       bar.animate(1)
     }
 
@@ -232,6 +236,7 @@ Template.home.helpers({
 
 Template.home.events({
   'click #download-button'() {
+    window.clearInterval(lineInterval);
     var code = $('#lineRegister').val().toUpperCase();
     console.log(code)
     var line = Lines.find({code: code}).fetch()[0];
@@ -240,6 +245,16 @@ Template.home.events({
     } else {
       console.log('Invalid Event Code!');
     }
+  },
+  'click #logo-container'() {
+    console.log('adding new lines');
+    //Meteor.call('newCLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101', 'E29V');
+    Meteor.call('newCLine', 'Eiffel Tower', 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France', 'MK5V');
+    Meteor.call('newCLine', 'RIMAC Arena', '9730 Hopkins Dr, La Jolla, CA 92093', 'E29V');
+    window.clearInterval(lineInterval);
+    $('#lineSize').show();
+    $('#cDone').hide();
+    FlowRouter.go('home');
   }
 });
 

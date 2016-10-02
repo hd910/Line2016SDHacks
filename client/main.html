@@ -7,6 +7,7 @@
   <!--<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <script src="/materialize.js"></script>-->
   <!--<script src="js/init.js"></script>-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="/canvasjs.min.js"></script>
 </head>
 
@@ -192,7 +193,12 @@
 
       <span id="timeLeft" class="circleText timeText"> {{line.hourMin}}</span>
 
-      <span class="circleText etaText"> {{line.lineSize}}</span>
+      <span class="circleText etaText">
+        <span id="lineSize">
+          {{line.lineSize}}
+        </span>
+        <i id="cDone" style=" margin-top: 5px; display:none;" class="medium material-icons">done</i>
+      </span>
 
       <h3 class="header center white-text">{{line.name}}</h3>
       <h5 class="header center white-text">{{line.address}}</h5>
