@@ -26,7 +26,6 @@ FlowRouter.route('/:_id', {
 });
 
 var lineInterval;
-var dashInterval;
 var lineNum;
 
 Meteor.subscribe('lines', function() {
@@ -42,7 +41,7 @@ Template.dashboard.helpers({
 
 Template.server.rendered = function(){
   console.log('Server rendered')
-  Meteor.call('lineAdjust', 'E29V', 23);
+  Meteor.call('lineAdjust', 'E29V', 5);
 
   lineInterval = setInterval(intervalFunction, 3000);
 
@@ -56,6 +55,10 @@ Template.server.rendered = function(){
     var cMinute = Math.round(timeLeft%60)
     var hourMin = cHour + 'hr ' + cMinute + 'm';
     Meteor.call('hourMin', code, hourMin);
+    if (lineNum < 1) {
+      window.clearInterval(lineInterval);
+      //fire trillo event!
+    }
     console.log(hourMin);
     //$('#qPosition').text(lineNum);
   }
@@ -69,7 +72,6 @@ Template.dashboard.rendered = function(){
 Template.header.events({
   'click #logo-container'() {
     window.clearInterval(lineInterval);
-    window.clearInterval(dashInterval);
     FlowRouter.go('home');
   }
 });
