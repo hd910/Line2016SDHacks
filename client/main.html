@@ -10,8 +10,9 @@
 </head>
 
 <template name="maps">
-  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-  <div id="map"></div>
+  <div class="map-container">
+    {{> googleMap name="exampleMap" options=exampleMapOptions}}
+  </div>
 </template>
 
 <template name="home">
@@ -168,6 +169,7 @@
           <img src="img/samplePicture.PNG">
         </div>
       </div>
+      {{> maps}}
     </div>
   </div>
 

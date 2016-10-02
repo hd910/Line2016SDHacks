@@ -23,3 +23,9 @@ body{
     top: 210px;
     width: 100%
 }
+
+.map-container {
+  width: 800px;
+  max-width: 100%;
+  height: 500px;
+}
