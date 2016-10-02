@@ -112,6 +112,19 @@ Template.server.rendered = function(){
 Template.dashboard.rendered = function(){
   $('.button-collapse').sideNav();
   $('.carousel.carousel-slider').carousel({full_width: true});
+  var ProgressBar = require('progressbar.js')
+  var line = new ProgressBar.Line('#circleProgressBar');
+  var bar = new ProgressBar.Circle(circleProgressBar, {
+    strokeWidth: 6,
+    easing: 'easeInOut',
+    duration: 1400,
+    color: '#2980b9',
+    trailColor: '#eee',
+    trailWidth: 0,
+    svgStyle: null
+  });
+
+  bar.animate(1.0);  // Number from 0.0 to 1.0
 };
 
 Template.header.events({
