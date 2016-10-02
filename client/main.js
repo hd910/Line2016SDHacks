@@ -104,8 +104,6 @@ Template.server.rendered = function(){
       window.clearInterval(lineInterval);
       //fire trillo event!
     }
-    console.log(hourMin);
-    //$('#qPosition').text(lineNum);
   }
 };
 
