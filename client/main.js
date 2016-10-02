@@ -21,14 +21,14 @@ FlowRouter.route('/', {
 FlowRouter.route('/:_id', {
   name: 'line',
   action(params, queryParams) {
-    BlazeLayout.render('layout1', { top: "headerMain", main: "dashboard" });
+    BlazeLayout.render('layout1', { top: "header", main: "dashM" });
   }
 });
 
 FlowRouter.route('/view/:_id', {
   name: 'lineView',
   action(params, queryParams) {
-    BlazeLayout.render('layout1', { top: "header", main: "dashboard" });
+    BlazeLayout.render('layout1', { top: "header", main: "dash" });
   }
 });
 
@@ -79,6 +79,7 @@ Template.maps.helpers({
       return {
         //34°02'37.6"N 118°15'55.9"W
         center: new google.maps.LatLng(32.885246, -117.239136),
+        scrollwheel: false,
         zoom: 15
       };
     }
@@ -126,7 +127,7 @@ Template.charts.rendered = function(){
   $('.canvasjs-chart-credit').hide()
 }
 
-Template.headerMain.rendered = function(){
+Template.dashM.rendered = function(){
   console.log('Server rendered')
   Meteor.call('lineAdjust', 'E29V', 15);
 
@@ -135,7 +136,8 @@ Template.headerMain.rendered = function(){
   var code = FlowRouter.getParam("_id");
   //Tick Tock
   var per = 0;
-  var total = Lines.find({code: code}).fetch()[0].lineSize;
+  var total = 15;
+  //Lines.find({code: code}).fetch()[0].lineSize;
   function intervalFunction() {
     Meteor.call('lineMinus', code)
     var lineNum = Lines.find({code: code}).fetch()[0].lineSize;
