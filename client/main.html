@@ -7,12 +7,17 @@
   <!--<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <script src="/materialize.js"></script>-->
   <!--<script src="js/init.js"></script>-->
+  <script src="/canvasjs.min.js"></script>
 </head>
 
 <template name="maps">
   <div class="map-container">
     {{> googleMap name="exampleMap" options=exampleMapOptions}}
   </div>
+</template>
+
+<template name='charts'>
+  <div id="chartContainer" style="height: 400px; width: 100%;"></div>
 </template>
 
 <template name="home">
@@ -170,6 +175,7 @@
         </div>
       </div>
       {{> maps}}
+      {{> charts}}
     </div>
   </div>
 
