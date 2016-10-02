@@ -58,7 +58,7 @@ Template.maps.rendered = function(){
       map: map.instance
     });
 
-    if (dashCode == 'E29V') {
+    /*if (dashCode == 'E29V') {
       var marker2 = new google.maps.Marker({
         icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
         position: new google.maps.LatLng(32.884890, -117.239047),
@@ -66,7 +66,7 @@ Template.maps.rendered = function(){
       });
     } else {
       //other locations
-    }
+    }*/
 
   });
 };
@@ -78,7 +78,7 @@ Template.maps.helpers({
       // Map initialization options
       return {
         //34°02'37.6"N 118°15'55.9"W
-        center: new google.maps.LatLng(32.885246, -117.239136),
+        center: new google.maps.LatLng(48.858487, 2.294172),
         scrollwheel: false,
         zoom: 18
       };
@@ -128,7 +128,6 @@ Template.charts.rendered = function(){
 }
 
 Template.dashM.rendered = function(){
-  console.log('Server rendered')
   Meteor.call('lineAdjust', 'E29V', 15);
 
   lineInterval = setInterval(intervalFunction, 3000);
@@ -195,9 +194,15 @@ Template.dashboard.rendered = function(){
   });
 };
 
+Template.header.rendered = function() {
+  console.log('header')
+};
+
 Template.header.events({
   'click #logo-container'() {
+    console.log('adding new lines');
     //Meteor.call('newCLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101', 'E29V');
+    Meteor.call('newCLine', 'Eiffel Tower', 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France', 'MK5V');
     Meteor.call('newCLine', 'RIMAC Arena', '9730 Hopkins Dr, La Jolla, CA 92093', 'E29V');
     window.clearInterval(lineInterval);
     FlowRouter.go('home');
@@ -217,7 +222,6 @@ Template.home.rendered = function() {
       FlowRouter.go('line', { _id: code});
     } else {
       console.log('Invalid Event Code!');
-      //alert('Invalid Event Code!');
     }
     //return false;
   });
@@ -235,7 +239,6 @@ Template.home.events({
       FlowRouter.go('line', { _id: code});
     } else {
       console.log('Invalid Event Code!');
-      //alert('Invalid Event Code!');
     }
   }
 });
