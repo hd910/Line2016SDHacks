@@ -168,11 +168,12 @@ Template.dashM.rendered = function(){
         trailWidth: 0,
         svgStyle: null
       });
+      $("html, body").animate({ scrollTop: 0 }, "slow");
       var hourMin = "Ready";
       Meteor.call('hourMin', code, hourMin);
       $('#lineSize').hide();
       $('#cDone').show();
-      bar.animate(1)
+      bar.animate(1);
     }
 
     if (lineNum < 1) {
@@ -245,6 +246,7 @@ Template.home.events({
     } else {
       console.log('Invalid Event Code!');
     }
+    $("html, body").animate({ scrollTop: 0 }, "slow");
   },
   'click #logo-container'() {
     console.log('adding new lines');
