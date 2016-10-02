@@ -61,7 +61,7 @@ Template.maps.rendered = function(){
     if (dashCode == 'E29V') {
       var marker2 = new google.maps.Marker({
         icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-        position: new google.maps.LatLng(32.879694, -117.236567),
+        position: new google.maps.LatLng(32.884890, -117.239047),
         map: map.instance
       });
     } else {
@@ -80,7 +80,7 @@ Template.maps.helpers({
         //34°02'37.6"N 118°15'55.9"W
         center: new google.maps.LatLng(32.885246, -117.239136),
         scrollwheel: false,
-        zoom: 15
+        zoom: 18
       };
     }
   }
@@ -136,7 +136,7 @@ Template.dashM.rendered = function(){
   var code = FlowRouter.getParam("_id");
   //Tick Tock
   var per = 0;
-  var total = 15;
+  var total = 16;
   //Lines.find({code: code}).fetch()[0].lineSize;
   function intervalFunction() {
     Meteor.call('lineMinus', code)
@@ -184,6 +184,7 @@ Template.dashboard.rendered = function(){
 Template.header.events({
   'click #logo-container'() {
     //Meteor.call('newCLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101', 'E29V');
+    Meteor.call('newCLine', 'RIMAC Arena', '9730 Hopkins Dr, La Jolla, CA 92093', 'E29V');
     window.clearInterval(lineInterval);
     FlowRouter.go('home');
   }
