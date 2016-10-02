@@ -155,11 +155,21 @@ Template.dashM.rendered = function(){
       bar.animate(per)
     } else {
       //change circle to something bright
-      bar.color = "#2ed06e";
-      var opts = {
-        from: { color: '#2980b9 '},
-        to: { color: '#2ed06e'}};
-      bar.animate(1, opts);
+      $("#circleProgressBar").html("");
+      var ProgressBar = require('progressbar.js')
+      var line = new ProgressBar.Line('#circleProgressBar');
+      bar = new ProgressBar.Circle(circleProgressBar, {
+        strokeWidth: 6,
+        easing: 'easeInOut',
+        duration: 1400,
+        color: '#2ed06e',
+        trailColor: '#eee',
+        trailWidth: 0,
+        svgStyle: null
+      });
+      var hourMin = "Ready";
+      Meteor.call('hourMin', code, hourMin);
+      bar.animate(1)
     }
 
     if (lineNum < 1) {
