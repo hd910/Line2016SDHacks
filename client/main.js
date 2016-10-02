@@ -34,6 +34,7 @@ FlowRouter.route('/:_id', {
 
 var lineInterval;
 var lineNum;
+var dashCode;
 
 Meteor.subscribe('lines', function() {
   lineNum = Lines.find({}).fetch()[0].lineSize;
@@ -41,13 +42,32 @@ Meteor.subscribe('lines', function() {
 
 Template.dashboard.helpers({
   line: function(){
-    var code = FlowRouter.getParam("_id");
-    return Lines.find({code: code}).fetch()[0];
+    dashCode = FlowRouter.getParam("_id");
+    return Lines.find({code: dashCode}).fetch()[0];
   }
 });
 
 Template.maps.rendered = function(){
-  GoogleMaps.load();
+  //GoogleMaps.load({ v: '3', key: '12345', libraries: 'geometry,places' });
+  GoogleMaps.load({key: 'AIzaSyAlvw8Vw4HAy8DCD08Pue62prn04NDA0HU'});
+  GoogleMaps.ready('exampleMap', function(map) {
+    // Add a marker to the map once it's ready
+    var marker = new google.maps.Marker({
+      position: map.options.center,
+      map: map.instance
+    });
+
+    if (dashCode == 'E29V') {
+      var marker2 = new google.maps.Marker({
+        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+        position: new google.maps.LatLng(32.879694, -117.236567),
+        map: map.instance
+      });
+    } else {
+      //other locations
+    }
+
+  });
 };
 
 Template.maps.helpers({
@@ -56,8 +76,9 @@ Template.maps.helpers({
     if (GoogleMaps.loaded()) {
       // Map initialization options
       return {
-        center: new google.maps.LatLng(-37.8136, 144.9631),
-        zoom: 8
+        //34°02'37.6"N 118°15'55.9"W
+        center: new google.maps.LatLng(32.885246, -117.239136),
+        zoom: 15
       };
     }
   }
