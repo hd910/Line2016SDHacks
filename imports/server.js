@@ -1,5 +1,9 @@
+import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { render } from 'react-dom'
 import { Mongo } from 'meteor/mongo';
+
+import App from '../imports/ui/App.jsx'
 
 //DB Schema -> seperate document for each location or array
 //inside a single document
@@ -38,6 +42,7 @@ Meteor.methods({
 
 //Needs db to store info about files
 Meteor.startup(() => {
+  render(<App />, document.getElementById('render-target'));
   //Meteor.call('codeAdjust', '1499', '4B5V')
   //Meteor.call('lineAdjust', 'E29V', 149);
   //Meteor.call('newCLine', 'Which Wich', '926 Orange Ave, Coronado, CA 92118', '4B5V');

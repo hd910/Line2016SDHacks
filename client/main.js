@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { Lines } from '../imports/server.js';
 
 import './main.html';
+import '../imports/templates.html';
 
 FlowRouter.route('/', {
   name: 'home',
@@ -207,8 +208,8 @@ Template.header.events({
   'click #logo-container'() {
     console.log('adding new lines');
     //Meteor.call('newCLine', 'Panda Express', 'Panda Express, 453 Horton Plaza, San Diego, CA 92101', 'E29V');
-    Meteor.call('newCLine', 'Eiffel Tower', 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France', 'MK5V');
-    Meteor.call('newCLine', 'RIMAC Arena', '9730 Hopkins Dr, La Jolla, CA 92093', 'E29V');
+    //Meteor.call('newCLine', 'Eiffel Tower', 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France', 'MK5V');
+    //Meteor.call('newCLine', 'RIMAC Arena', '9730 Hopkins Dr, La Jolla, CA 92093', 'E29V');
     window.clearInterval(lineInterval);
     FlowRouter.go('home');
   }
@@ -246,7 +247,6 @@ Template.home.events({
     } else {
       console.log('Invalid Event Code!');
     }
-    $("html, body").animate({ scrollTop: 0 }, "slow");
   },
   'click #logo-container'() {
     console.log('adding new lines');
